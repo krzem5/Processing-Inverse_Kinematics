@@ -1,1 +1,3 @@
-start "" "projects/Processing-Inverse_Kinematics/index/index.pde"
+@echo off
+cls
+python build.py %*
