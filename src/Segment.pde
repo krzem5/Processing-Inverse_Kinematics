@@ -5,11 +5,12 @@ class Segment{
 	PVector sp;
 	PVector ep;
 	float len;
+	PVector v=null;
 
 
 
 	Segment(float len){
-		this.a=0;
+		this.a=PI/2;
 		this.len=len;
 	}
 
@@ -22,11 +23,11 @@ class Segment{
 
 
 	void follow(float x,float y){
-		this.a=atan2(y-this.sp.y,x-this.sp.x);
-		PVector d=new PVector(x-this.sp.x,y-this.sp.y);
-		d.setMag(this.len);
-		d.mult(-1);
-		this.sp=new PVector(x+d.x,y+d.y);
+		float dx=x-this.sp.x;
+		float dy=y-this.sp.y;
+		this.a=atan2(dy,dx);
+		float m=this.len/sqrt(dx*dx+dy*dy);
+		this.sp=new PVector(x-dx*m,y-dy*m+GRAVITY);
 	}
 
 

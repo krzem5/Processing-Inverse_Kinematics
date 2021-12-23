@@ -1,13 +1,15 @@
 class Tentacle{
 	ArrayList<Segment> sl;
 	PVector s;
-	long _lmx=-1;
-	long _lmy=-1;
+	int _lmx=0;
+	int _lmy=0;
 
 
 
 	Tentacle(PVector s,int sn){
 		this.s=s;
+		this._lmx=width/2;
+		this._lmy=height/2;
 		this.gen(sn);
 	}
 
@@ -42,18 +44,13 @@ class Tentacle{
 
 
 	void update(){
-		if (mousePressed||_lmx==-1){
-			_lmx=mouseX;
-			_lmy=mouseY;
+		if (mousePressed){
+			this._lmx=mouseX;
+			this._lmy=mouseY;
 		}
-		for (int i=this.sl.size()-1;i>=0;i--){
-			Segment s=this.sl.get(i);
-			if (i==this.sl.size()-1){
-				s.follow(_lmx,_lmy);
-			}
-			else{
-				s.follow();
-			}
+		this.sl.get(this.sl.size()-1).follow(this._lmx,this._lmy);
+		for (int i=this.sl.size()-2;i>=0;i--){
+			this.sl.get(i).follow();
 		}
 		for (int i=0;i<this.sl.size();i++){
 			Segment s=this.sl.get(i);
