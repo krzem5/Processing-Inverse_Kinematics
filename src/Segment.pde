@@ -5,7 +5,6 @@ class Segment{
 	PVector sp;
 	PVector ep;
 	float len;
-	PVector v=null;
 
 
 
